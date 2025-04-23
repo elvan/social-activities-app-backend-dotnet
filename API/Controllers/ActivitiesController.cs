@@ -1,10 +1,7 @@
-using System;
 using Application.Activities.Commands;
 using Application.Activities.DTOs;
 using Application.Activities.Queries;
 using Application.Core;
-using Domain;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,10 +30,10 @@ public class ActivitiesController : BaseApiController
 
     [HttpPut("{id}")]
     [Authorize(Policy = "IsActivityHost")]
-    public async Task<ActionResult> EditActivity(string id, Activity activity)
+    public async Task<ActionResult> EditActivity(string id, EditActivityDto activity)
     {
         activity.Id = id;
-        return HandleResult(await Mediator.Send(new EditActivity.Command { Activity = activity }));
+        return HandleResult(await Mediator.Send(new EditActivity.Command { ActivityDto = activity }));
     }
 
     [HttpDelete("{id}")]

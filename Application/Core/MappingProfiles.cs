@@ -13,6 +13,7 @@ public class MappingProfiles : Profile
         string? currentUserId = null;
         CreateMap<Activity, Activity>();
         CreateMap<CreateActivityDto, Activity>();
+        CreateMap<EditActivityDto, Activity>();
         CreateMap<Activity, ActivityDto>()
             .ForMember(d => d.HostDisplayName, o => o.MapFrom(s =>
                 s.Attendees.FirstOrDefault(x => x.IsHost)!.User.DisplayName))
